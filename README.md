@@ -8,10 +8,12 @@ A simple application with Zend Framework 3
 
 You need to have Apache 2.4 HTTP server, PHP v.5.6 or later and MySQL v.5.6 or later.
 
-Download the sample to some directory (it can be your home dir or `/var/www/html`) and run Composer as follows:
+Clone this repository and run Composer as follows:
 
 ```
-php composer.phar install or composer install
+git clone git@github.com:lmribeiro/zf-app.git
+
+composer install
 ```
 
 The command above will install the dependencies (Zend Framework and Doctrine).
@@ -19,7 +21,7 @@ The command above will install the dependencies (Zend Framework and Doctrine).
 Enable development mode:
 
 ```
-php composer.phar development-enable
+composer development-enable
 ```
 
 Adjust permissions for `data` directory:
@@ -42,21 +44,21 @@ Edit `config/autoload/local.php` and set database password parameter.
 Login to MySQL client:
 
 ```
-mysql -u root -p
+mysql -u '<your_user'> -p
 ```
 
 Create database:
 
 ```
 CREATE DATABASE zf-app;
-GRANT ALL PRIVILEGES ON zf-app.* TO user@localhost identified by '<your_password>';
+GRANT ALL PRIVILEGES ON zf-app.* TO '<your_user>'@localhost identified by '<your_password>';
 quit
 ```
 
 Create table and add some dummy data:
 
 ```
-mysql -u user -p zf-app < data/schema.mysql.sql
+mysql -u '<your_user>' -p zf-app < data/schema.mysql.sql
 ```
 
 Alternatively, and if you don't need dummy data,  you can run database migrations:

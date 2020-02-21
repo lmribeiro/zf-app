@@ -1,0 +1,61 @@
+<?php
+$this->headTitle('Manage Categories');
+
+$this->mainMenu()->setActiveItemId('admin');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('categories', ['action'=>'index']),
+    'Admin' => $this->url('categories', ['action' => 'admin']),
+    'Admin' => $this->url('home')
+]);
+
+?>
+<div class="row"> 
+    <div class="col-6">
+        <h1>Admin Categories</h1>
+    </div>
+    <div class="col-6 text-right">
+        <p>
+            <a class="btn btn-primary" href="
+               <?= $this->url('categories', ['action' => 'add']); ?>">
+                New
+            </a>
+        </p>
+    </div>
+</div>
+<hr/>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>        
+        <th>Created At</th>
+        <th class="text-right">Actions</th>        
+    </tr>
+
+    <?php foreach ($categories as $category): ?>
+
+        <tr>
+            <td><?= $this->escapeHtml($category->getId()); ?></td>
+            <td>
+                <a href="<?= $this->url('categories', ['action' => 'view', 'id' => $category->getId()]); ?>">
+                    <?= $this->escapeHtml($category->getName()); ?>
+                </a> 
+            </td>
+            <td><?= $this->escapeHtml($categoryManager->getCategoryStatusAsString($category)); ?></td>
+            <td><?= $this->escapeHtml($category->getCreatedAt()); ?></td>        
+            <td class="text-right">
+                <a class="btn btn-info" href="<?= $this->url('categories', ['action' => 'edit', 'id' => $category->getId()]); ?>">
+                    Edit
+                </a>
+                <a class="btn btn-danger" href="<?= $this->url('categories', ['action' => 'delete', 'id' => $category->getId()]); ?>">
+                    Delete
+                </a>
+            </td>    
+        </tr>
+
+    <?php endforeach; ?>   
+
+</table>

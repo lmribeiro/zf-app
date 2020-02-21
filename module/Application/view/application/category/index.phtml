@@ -1,0 +1,55 @@
+<?php
+$this->headTitle('Categories');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home' => $this->url('categories', ['action' => 'index']),
+    'Categories' => $this->url('home')
+]);
+
+?>
+<div class="row"> 
+    <div class="col-6">
+        <h1>Categories</h1>
+    </div>
+    <div class="col-6 text-right">
+        <p>
+            <a class="btn btn-primary" href="
+               <?= $this->url('categories', ['action' => 'add']); ?>">
+                New
+            </a>
+        </p>
+    </div>
+</div>
+<hr/>
+
+<div class="row">
+
+    <?php foreach ($categories as $category): ?>
+        <div class="col-md-8">
+            <h3>
+                <a href="<?= $this->url('categories', ['action' => 'view', 'id' => $category->getId()]); ?>">
+                    <?= $this->escapeHtml($category->getName()); ?>
+                </a>    
+            </h3>
+
+            <p>
+                Created at: <?= $this->escapeHtml(date('jS \of F Y', strtotime($category->getCreatedAt()))); ?> 
+            </p>    
+
+        </div>
+        <div class="col-md-4 text-right">
+            <p><b>State:</b> <?= $this->escapeHtml($categoryManager->getCategoryStatusAsString($category)); ?></p>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="col-md-12">
+        <?=
+        $this->paginationControl($categories, 'Sliding', 'application/partial/paginator', array('route' => 'application'));
+
+        ?>
+    </div>
+</div>
+
+

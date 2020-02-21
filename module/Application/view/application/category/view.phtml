@@ -1,0 +1,37 @@
+<?php
+$this->headTitle('View Category - '.$category->getName());
+
+$this->mainMenu()->setActiveItemId('admin');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home' => $this->url('categories', ['action' => 'index']),
+    'Admin' => $this->url('categories', ['action' => 'admin']),
+    'View Category' => $this->url('categories', ['action' => 'view'])
+]);
+
+?>
+
+<div class="row">
+    <div class="col-6">
+        <h1>
+            <?= $this->escapeHtml($category->getName()); ?>    
+        </h1>
+    </div>
+    <div class="col-6 text-right">
+        <p class="text-right">
+            <a class="btn btn-info" href="<?= $this->url('categories', ['action' => 'edit', 'id' => $category->getId()]); ?>">
+                Edit
+            </a>
+            <a class="btn btn-danger" href="<?= $this->url('categories', ['action' => 'delete', 'id' => $category->getId()]); ?>">
+                Delete
+            </a>
+        </p>  
+    </div>
+</div>
+
+
+<p><b>State:</b> <?= $this->escapeHtml($categoryManager->getCategoryStatusAsString($category)); ?></p>
+<p><b>Date:</b> <?= $this->escapeHtml($category->getCreatedAt()); ?></p>
+
+
+

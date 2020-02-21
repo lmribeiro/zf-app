@@ -68,8 +68,11 @@ Alternatively, and if you don't need dummy data,  you can run database migration
 
 You can start the serve with composer.
 
+```
+composer serve
+```
 
-The app will run at http://0.0.0.0:8787. Goto to composer to change the default port.
+The app will run at http://0.0.0.0:8787. Go to file composer.json to change the default port.
 If 8787 port is not available, you con execute the following command setting the port.
 
 ```
